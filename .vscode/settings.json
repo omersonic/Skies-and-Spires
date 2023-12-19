@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Skies and Spires.sln"
+    "dotnet.defaultSolution": "Skies-and-spires.sln"
 }
