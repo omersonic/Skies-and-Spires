@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody rb;
+    AudioSource thrustSound;
     
     [SerializeField] private float thrustSpeed = 1000f;
     [SerializeField] private float rotateSpeed = 100f;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // gets the rigidbody component
+        thrustSound = GetComponent<AudioSource>(); // gets the audiosource component
     }
 
     // Update is called once per frame
@@ -26,7 +28,15 @@ public class PlayerMovement : MonoBehaviour
     void ProcessThrust()
     {
         if (Input.GetKey(KeyCode.Space)) {
+            
             rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
+            if (!thrustSound.isPlaying) {
+                thrustSound.Play();
+            }
+            
+        }
+        else {
+            thrustSound.Stop();
         }
         
     }
