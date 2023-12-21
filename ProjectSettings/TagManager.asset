@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Friendly
   - Boost
+  - Boundary
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    [HideInInspector] public int currentSceneIndex;
     private void OnCollisionEnter(Collision other) 
     {
         switch (other.gameObject.tag) // checks the collided object's tag
@@ -13,10 +14,13 @@ public class CollisionHandler : MonoBehaviour
                 break;
             case "Finish":
                 Debug.Log("Finished!");
-                NextLevel();
+                loadLevel();
                 break;
             case "Boost":
                 Debug.Log("Boost!");
+                break;
+            case "Boundary":
+                Debug.Log("Wall!");
                 break;
             default:
                 Debug.Log("Hit!");
@@ -25,15 +29,18 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-    private void ReloadLevel() { // returns the currently active scene + its index, then loads
+    private void loadLevel() { // returns the currently active scene + its index, then loads.
         Scene scene = SceneManager.GetActiveScene();
-        int currentSceneIndex = scene.buildIndex;
-        SceneManager.LoadSceneAsync(currentSceneIndex); //Async is preferable, needs an index int
+        currentSceneIndex = scene.buildIndex;
+        int nextSceneIndex = scene.buildIndex+1;
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings) {
+           nextSceneIndex = 0; // resets the index count if reaches final level
+        }
+         SceneManager.LoadSceneAsync(nextSceneIndex); //Async is preferable, needs an index int
     }
 
-    private void NextLevel() { //loads the next level
-        Scene scene = SceneManager.GetActiveScene();
-        int currentSceneIndex = scene.buildIndex;
-        SceneManager.LoadSceneAsync(currentSceneIndex+1);
+    private void ReloadLevel() {
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadSceneAsync(currentSceneIndex);
     }
 }
