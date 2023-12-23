@@ -103,8 +103,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.41262692
+  m_Center: {x: 0.11973846, y: 0, z: 0}
 --- !u!1 &1203420658071196503
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +336,7 @@ MonoBehaviour:
   thrustSpeed: 1000
   rotateSpeed: 100
   rotInputX: 0.6
+  engineThrust: {fileID: 8300000, guid: 5811c7d8d2017e54f8e9c6b8f38d519a, type: 3}
 --- !u!114 &6900501731355555057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +350,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSceneIndex: 0
+  delaySec: 1.5
+  crashSound: {fileID: 8300000, guid: 07ef8436dfde11d44802526387623a49, type: 3}
+  crashVol: 0.1
+  victorySound: {fileID: 8300000, guid: 64495a5eac1bd8844b9a1e3378d06bd6, type: 3}
+  victoryVol: 0.8
 --- !u!54 &7601266072340424792
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -386,7 +392,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5811c7d8d2017e54f8e9c6b8f38d519a, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.768
   m_Pitch: 1
