@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float thrustSpeed = 1000f;
     [SerializeField] private float rotateSpeed = 100f;
     [SerializeField] private float rotInputX = 0.6f;
+    [SerializeField] private float tiltSpeed = 100f;
     [SerializeField] AudioClip engineThrust;
 
     void Start()
@@ -55,6 +56,10 @@ public class PlayerMovement : MonoBehaviour
             
             ApplyRotation(-rotateSpeed, rotInputX); // the parameter rotThisFrame allows a negative input as well
         }
+
+        if (Input.GetKey(KeyCode.W)) {
+            ApplyTilt(tiltSpeed);
+        }
     }
 
     private void ApplyRotation(float rotThisFrame, float rotInputFrame) // uses a parameter as a variable for the rotation speed
@@ -63,8 +68,16 @@ public class PlayerMovement : MonoBehaviour
         //transform.Rotate(Vector3.forward * rotThisFrame * Time.deltaTime);
         // rb.freezeRotation = false; // unfreezing rotation so the physics system can take over
 
-        rb.AddTorque(Vector3.forward * rotThisFrame * Time.deltaTime * rotInputFrame);
+        //rb.AddTorque(Vector3.forward * rotThisFrame * Time.deltaTime * rotInputFrame);
         // This is another possible solution, where the constraints aren't cancelled like in the above
         
+        Quaternion deltaRot = Quaternion.Euler(Vector3.right * rotThisFrame * Time.deltaTime * rotInputFrame);
+        rb.MoveRotation(rb.rotation * deltaRot); //tilits on the z-axis
+    }
+
+    void ApplyTilt(float tiltThisFrame) {
+        //Allows the player to tilts forward and backward on the y axis
+        Quaternion deltaTilt = Quaternion.Euler(Vector3.back * tiltThisFrame * Time.deltaTime);
+        rb.MoveRotation(rb.rotation * deltaTilt);
     }
 }
