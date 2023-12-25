@@ -60,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W)) {
             ApplyTilt(tiltSpeed);
         }
+         else if (Input.GetKey(KeyCode.S)) {
+             ApplyTilt(-tiltSpeed);
+         }
     }
 
     private void ApplyRotation(float rotThisFrame, float rotInputFrame) // uses a parameter as a variable for the rotation speed
