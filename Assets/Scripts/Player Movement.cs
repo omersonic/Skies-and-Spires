@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         ProcessThrust();
         ProcessRotation();
@@ -39,6 +39,12 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
+        // else if (Input.GetKey(KeyCode.LeftControl)) {
+        //     rb.AddRelativeForce(Vector3.right * thrustSpeed * Time.deltaTime);
+        //     if (!audioSource.isPlaying) {
+        //         audioSource.PlayOneShot(engineThrust);
+        //     }
+        // }
         else {
             audioSource.Stop();
         }
@@ -60,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W)) {
             ApplyTilt(tiltSpeed);
         }
-         else if (Input.GetKey(KeyCode.S)) {
+        else if (Input.GetKey(KeyCode.S)) {
              ApplyTilt(-tiltSpeed);
          }
     }
@@ -80,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplyTilt(float tiltThisFrame) {
         //Allows the player to tilts forward and backward on the y axis
-        Quaternion deltaTilt = Quaternion.Euler(Vector3.back * tiltThisFrame * Time.deltaTime);
+        Quaternion deltaTilt = Quaternion.Euler(Vector3.forward * tiltThisFrame * Time.deltaTime);
         rb.MoveRotation(rb.rotation * deltaTilt);
     }
 }

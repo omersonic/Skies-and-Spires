@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c885c967c168f847ab74858f2e0d120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustSpeed: 1000
+  thrustSpeed: 800
   rotateSpeed: 100
   rotInputX: 0.6
   tiltSpeed: 100
@@ -220,7 +220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.39
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
       propertyPath: m_LocalPosition.z
@@ -254,10 +254,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7023974396876390944, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27c527135e733194f887054cefa42658, type: 2}
+    - target: {fileID: -6902573867230041995, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3ce9863f639a2b458adf8bcaee047fe, type: 2}
+    - target: {fileID: -5610832936595009893, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 82.322
+      objectReference: {fileID: 0}
+    - target: {fileID: -5610832936595009893, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 82.322
+      objectReference: {fileID: 0}
+    - target: {fileID: -5610832936595009893, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 82.322
+      objectReference: {fileID: 0}
+    - target: {fileID: -5610832936595009893, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439730007547781893, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c7f07149cfb19f944a4ec25d46c698ca, type: 2}
+    - target: {fileID: -678588488315902003, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0cb70cf9f34734845abc359875e230a7, type: 2}
     - target: {fileID: 919132149155446097, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
       propertyPath: m_Name
       value: Steampunk machine
       objectReference: {fileID: 0}
+    - target: {fileID: 1129496810705857465, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c7453fc30c72264e93ee6a6330ae73b, type: 2}
+    - target: {fileID: 1746654310787607633, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3ce9863f639a2b458adf8bcaee047fe, type: 2}
+    - target: {fileID: 2786534777698132407, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3ce9863f639a2b458adf8bcaee047fe, type: 2}
+    - target: {fileID: 6944656104360116776, guid: 1e38b67fd4f54604ab6291725bd9ce83, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3ce9863f639a2b458adf8bcaee047fe, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
