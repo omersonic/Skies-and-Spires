@@ -15,11 +15,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotInputX = 0.6f;
     [SerializeField] private float tiltSpeed = 100f;
     [SerializeField] AudioClip engineThrust;
+    [SerializeField] private ParticleSystem smokeTrail1;
+    [SerializeField] private ParticleSystem smokeTrail2;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // gets the rigidbody component
-        audioSource = GetComponent<AudioSource>(); // gets the audiosource component
+        audioSource = GetComponent<AudioSource>();
+         // gets the audiosource component
     }
 
     // Update is called once per frame
@@ -36,7 +39,11 @@ public class PlayerMovement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
             if (!audioSource.isPlaying) {
                 audioSource.PlayOneShot(engineThrust);
+                smokeTrail1.Play();
+                smokeTrail2.Play();
+
             }
+            
             
         }
         // else if (Input.GetKey(KeyCode.LeftControl)) {

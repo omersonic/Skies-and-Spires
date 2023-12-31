@@ -8,6 +8,7 @@ public class CollisionHandler : MonoBehaviour
 {
     static AudioSource audioSource;
 
+
     [HideInInspector] public int currentSceneIndex;
     [SerializeField] private float delaySec = 1.5f;
     //controls crash sound and volume
@@ -16,6 +17,9 @@ public class CollisionHandler : MonoBehaviour
     //victory sound and volume
     [SerializeField] AudioClip victorySound;
     [SerializeField] private float victoryVol = 0.8f;
+
+    [SerializeField] ParticleSystem crashExplosion;
+    [SerializeField] private ParticleSystem victoryParticle;
 
     bool isTransitioning = false; //initiates game state toggling
 
@@ -59,6 +63,7 @@ public class CollisionHandler : MonoBehaviour
         isTransitioning = true;
         if (victorySound != null && audioSource != null) {
             audioSource.clip = victorySound;
+            victoryParticle.Play();
             audioSource.PlayOneShot(victorySound, victoryVol); // plays the sound and volume from the audioSource component
         }
         GetComponent<PlayerMovement>().enabled = false;
@@ -70,6 +75,7 @@ public class CollisionHandler : MonoBehaviour
         isTransitioning = true;
         // add SFX and particles
         if (victorySound != null && audioSource != null) {
+            crashExplosion.Play();
             audioSource.clip = crashSound;
             audioSource.PlayOneShot(crashSound, crashVol); // plays the sound and volume from the audioSource component
         }
