@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotInputX = 0.6f;
     [SerializeField] private float tiltSpeed = 100f;
     [SerializeField] AudioClip engineThrust;
-    [SerializeField] private ParticleSystem smokeTrail1;
-    [SerializeField] private ParticleSystem smokeTrail2;
+    [SerializeField] private ParticleSystem leftSmokeTrail;
+    [SerializeField] private ParticleSystem rightSmokeTrail;
 
     void Start()
     {
@@ -39,10 +39,11 @@ public class PlayerMovement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
             if (!audioSource.isPlaying) {
                 audioSource.PlayOneShot(engineThrust);
-                smokeTrail1.Play();
-                smokeTrail2.Play();
+                
 
             }
+            if (!leftSmokeTrail.isPlaying) leftSmokeTrail.Play();
+            if (!rightSmokeTrail.isPlaying) rightSmokeTrail.Play();
             
             
         }
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         // }
         else {
             audioSource.Stop();
+            
         }
         
     }
