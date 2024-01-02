@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Callbacks;
@@ -32,27 +33,16 @@ public class PlayerMovement : MonoBehaviour
         ProcessRotation();
     }
 
+
+
     void ProcessThrust()
     {
-        if (Input.GetKey(KeyCode.Space)) {
-            
-            rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
-            if (!audioSource.isPlaying) {
-                audioSource.PlayOneShot(engineThrust);
-                
+        if (Input.GetKey(KeyCode.Space))
+        {
+            startThrusting();
 
-            }
-            if (!leftSmokeTrail.isPlaying) leftSmokeTrail.Play();
-            if (!rightSmokeTrail.isPlaying) rightSmokeTrail.Play();
-            
-            
         }
-        // else if (Input.GetKey(KeyCode.LeftControl)) {
-        //     rb.AddRelativeForce(Vector3.right * thrustSpeed * Time.deltaTime);
-        //     if (!audioSource.isPlaying) {
-        //         audioSource.PlayOneShot(engineThrust);
-        //     }
-        // }
+        
         else {
             audioSource.Stop();
             
@@ -77,8 +67,24 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S)) {
              ApplyTilt(-tiltSpeed);
-         }
+        }
     }
+
+    private void startThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.deltaTime);
+        rb.AddRelativeForce(Vector3.right * thrustSpeed/5f * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(engineThrust);
+
+
+        }
+        if (!leftSmokeTrail.isPlaying) leftSmokeTrail.Play();
+        if (!rightSmokeTrail.isPlaying) rightSmokeTrail.Play();
+    }
+
+    
 
     private void ApplyRotation(float rotThisFrame, float rotInputFrame) // uses a parameter as a variable for the rotation speed
     {
@@ -90,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         // This is another possible solution, where the constraints aren't cancelled like in the above
         
         Quaternion deltaRot = Quaternion.Euler(Vector3.right * rotThisFrame * Time.deltaTime * rotInputFrame);
-        rb.MoveRotation(rb.rotation * deltaRot); //tilits on the z-axis
+        rb.MoveRotation(rb.rotation * deltaRot); //tilts the player on the z-axis
     }
 
     void ApplyTilt(float tiltThisFrame) {

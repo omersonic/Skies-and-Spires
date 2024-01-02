@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     static AudioSource audioSource;
+    Collider myCollider;
 
 
     [HideInInspector] public int currentSceneIndex;
@@ -22,6 +23,7 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] private ParticleSystem victoryParticle;
 
     bool isTransitioning = false; //initiates game state toggling
+    private bool debugCollsionDisabled = false;
 
 
     void Awake() {
@@ -29,11 +31,29 @@ public class CollisionHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    void Update() {
+#if DEBUG
+        ProcessCheats();
+#endif
+    }
+
+#if DEBUG    
+    private void ProcessCheats() //DEBUG CODE
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+            loadLevel();
+        else if (Input.GetKeyDown(KeyCode.C))
+            debugCollsionDisabled = !debugCollsionDisabled; // toggle collision
+            Debug.Log("Collider disabled!");
+            
+    }
+#endif
+
 
     private void OnCollisionEnter(Collision other) 
     {
         
-        if (isTransitioning) return; //prevents overlapping cases and terminates switch statement
+        if (isTransitioning || debugCollsionDisabled) return; //prevents overlapping cases and terminates switch statement
 
         switch (other.gameObject.tag) // checks the collided object's tag
         {
@@ -92,11 +112,13 @@ public class CollisionHandler : MonoBehaviour
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings) {
            nextSceneIndex = 0; // resets the index count if reaches final level
         }
-         SceneManager.LoadSceneAsync(nextSceneIndex); //Async is preferable, needs an index int
+        SceneManager.LoadSceneAsync(nextSceneIndex); //Async is preferable, needs an index int
     }
 
     private void ReloadLevel() {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadSceneAsync(currentSceneIndex);
     }
+
+    
 }
